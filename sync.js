@@ -7,7 +7,6 @@ const query = require('cli-interact').getYesNo;
 const ProgressBar = require('progress');
 const chalk = require('chalk');
 const request = require('request');
-const Spinner = require('cli-spinner').Spinner;
 
 // Format warnings output to terminal
 warning = str => chalk.redBright(str);
@@ -408,7 +407,7 @@ collectionPromises.then(function() {
 				item.then(data => {
 					var itemObj = JSON.parse(JSON.stringify(data));
 
-					var totalBatchPromises = new Array();						
+					var totalBatchPromises = new Array();						n
 
 					/* If total collection size is greater than the maximum
 					 * that can be retrieved at one time, iteratively fetch
@@ -626,11 +625,15 @@ function addMissing(missing, siteObj, a_IDs, b_IDs, a_Schema, b_Schema, a_Items,
 		}
 		for (var j = 0; j < missing[i].length; j++) {
 			var item = missing[i][j];
-			// If user consents, proceed to add item to site
-			var answer = query("Add item " + chalk.magenta(item.name) + sprintf(
-				" to collection \"%s\" in %s?", sharedNames[i], b_Site));
 
-			if (answer) {
+			var answer = false;
+
+			if (!settings.addItemsAutomatically) {
+				// If user consents, proceed to add item to site
+				answer = query("Add item " + chalk.magenta(item.name) + sprintf(
+					" to collection \"%s\" in %s?", sharedNames[i], b_Site));
+			}
+			if (settings.addItemsAutomatically || answer) {
 				console.log("Now adding \"%s\"...\n", item.name);
 
 				// Create new item, to be pushed to website eventually
