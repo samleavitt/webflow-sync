@@ -1,0 +1,17 @@
+{
+	"sites": [
+		{
+			"siteName": "Australia site",
+			"token": "5cfcc6c969b55e1d8f22301701b4ff3ce8815c8464913e7f585180be0e25277e"
+		}
+		,{
+			"siteName": "Singapore site",
+			"token": "dc4f4f1574fb66d6a37ba87afdbfc5b04cc113d53d67079251128592163f4ddd"
+		}
+		,{
+			"siteName": "Global site",
+			"token": "3345f6a4eac587da937bce5aed52fa16936a787e46e229bf62b1a4cd0a181a8f"
+		}
+	],
+	"addItemsAutomatically": "false"
+}

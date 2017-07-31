@@ -1,0 +1,45 @@
+{
+  "name": "webflow-sync",
+  "version": "1.0.0",
+  "description": "Sync Webflow CMS content across multiple sites",
+  "main": "sync.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/samleavitt/webflow-sync"
+  },
+  "keywords": [
+    "Webflow",
+    "CMS",
+    "Collections",
+    "Blogs",
+    "Content",
+    "Items",
+    "Articles",
+    "Videos",
+    "Listings",
+    "Events",
+    "Case",
+    "Studies",
+    "Testimonials",
+    "Websites",
+    "Synchronization",
+    "Audit",
+    "Transfer"
+  ],
+  "author": "sam leavitt",
+  "license": "ISC",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "chalk": "^2.0.1",
+    "cli-interact": "^0.1.9",
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.4",
+    "progress": "^2.0.0",
+    "request": "^2.81.0",
+    "sprintf-js": "^1.1.1",
+    "webflow-api": "^0.4.1"
+  }
+}
