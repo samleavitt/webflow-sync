@@ -407,7 +407,7 @@ collectionPromises.then(function() {
 				item.then(data => {
 					var itemObj = JSON.parse(JSON.stringify(data));
 
-					var totalBatchPromises = new Array();						n
+					var totalBatchPromises = new Array();
 
 					/* If total collection size is greater than the maximum
 					 * that can be retrieved at one time, iteratively fetch
@@ -425,6 +425,11 @@ collectionPromises.then(function() {
 									{offset: curr});
 								newItem.then(data => {
 									itemObj.items = itemObj.items.concat(JSON.parse(JSON.stringify(data)).items);
+									console.log("\n\nitemObj.items :")
+									console.log(itemObj.items.length);
+									// for (var i = 0; i < itemObj.items.length; i++) {
+									// 	console.log(itemObj.items[i].name);
+									// }
 									resolve();
 								});
 							});
@@ -531,14 +536,6 @@ collectionPromises.then(function() {
 
 	console.log("Gathered all website items data\n");
 
-	for (var i = 0; i < sharedData[2].a_IDs.length; i++) {
-		if (a_Items[2][i] == null) {
-			console.log(null)
-		} else {
-			console.log(a_Items[2][i].items.length);
-			console.log(b_Items[2][i].items.length);
-		}
-	}
 
 	/* ************************************************************************ */
 
@@ -627,13 +624,14 @@ function addMissing(missing, siteObj, a_IDs, b_IDs, a_Schema, b_Schema, a_Items,
 			var item = missing[i][j];
 
 			var answer = false;
+			var autoProceed = (settings.addItemsAutomatically.toLowerCase() == "false") ? false : true;
 
-			if (!settings.addItemsAutomatically) {
+			if (!autoProceed) {
 				// If user consents, proceed to add item to site
 				answer = query("Add item " + chalk.magenta(item.name) + sprintf(
 					" to collection \"%s\" in %s?", sharedNames[i], b_Site));
 			}
-			if (settings.addItemsAutomatically || answer) {
+			if (autoProceed || answer) {
 				console.log("Now adding \"%s\"...\n", item.name);
 
 				// Create new item, to be pushed to website eventually
@@ -999,25 +997,6 @@ function determineMissingAttributes(a_Object, b_Object, a_Missing, b_Missing) {
 
 	// any element remaining in b_Keys is missing from a.
 	a_Missing = b_Keys.slice()
-}
-
-
-// For debugging
-
-/* NEED TO FIX THIS */
-
-function examineCollection(collectionName, a_Schema, b_Schema, a_Site, b_Site) {
-	for (var i = 0; i < sharedData.names.length; i++) {
-
-		if (sharedData.names[i] == collectionName) {
-			var a_Fields = a_Schema[i].fields;
-			var b_Fields = b_Schema[i].fields;
-			for (var j = 0; j < a_Fields.length; j++) {
-				console.log("%s: " + JSON.stringify(a_Fields[j]), a_Site);
-				console.log("%s: " + JSON.stringify(b_Fields[j]), b_Site);
-			}
-		}
-	}
 }
 
 
