@@ -1,5 +1,5 @@
 @echo off
-title Webflow Sync Program
+title Webflow CMS Synchronizer
 echo All ready to begin syncing your Webflow CMS content.
 echo For usage instructions and tips, see the README file.
 echo If you wish to terminate the program at any time, press [ctrl] + [c], followed by [y] and [enter].
